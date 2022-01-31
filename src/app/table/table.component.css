@@ -1,4 +1,8 @@
 .cell {
-    border: 2px solid;
+    border: 1px solid;
     padding: 10px;
+}
+
+h4 {
+    margin: 0px;
 }

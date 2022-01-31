@@ -1,9 +1,28 @@
 <div class="row">
   <div class="col cell d-flex justify-content-center">
-    <input type="text" />
+    <h4>Item Name</h4>
   </div>
   <div class="col cell d-flex justify-content-center">
-    <input type="number" min="0" step="0.01" />
+    <h4>Item Name</h4>
   </div>
-  <div class="col cell d-flex justify-content-center">Column</div>
+  <div class="col cell d-flex justify-content-center">
+    <h4>Item Name</h4>
+  </div>
+  <div class="col cell d-flex justify-content-center">
+    <h4>Item Name</h4>
+  </div>
+</div>
+<div class="row" *ngFor="let item of receiptService.receiptItems">
+  <div class="col cell d-flex justify-content-center">
+    {{ item.itemName }}
+  </div>
+  <div class="col cell d-flex justify-content-center">
+    <input type="number" min="0" step="0.01" [value]="item.itemPrice" />
+  </div>
+  <div class="col cell d-flex justify-content-center">
+    <input type="number" [value]="item.itemCount" />
+  </div>
+  <div class="col cell d-flex justify-content-center">
+    {{ item.itemBuyers }}
+  </div>
 </div>

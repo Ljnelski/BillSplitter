@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IReceiptItem } from '../model/receiptItem';
+import { ReceiptService } from '../service/receiptService';
 
 @Component({
   selector: 'app-table',
@@ -7,9 +8,9 @@ import { IReceiptItem } from '../model/receiptItem';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  recepitItem: IReceiptItem[] = [];
+  constructor(public receiptService: ReceiptService) {}
 
-  constructor() {}
+  ngOnInit(): void {
 
-  ngOnInit(): void {}
+  }
 }
