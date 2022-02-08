@@ -7,9 +7,10 @@ import { TableComponent } from './table/table.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './service/modalService';
 import { ReceiptService } from './service/receiptService';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, ModalComponent],
+  declarations: [AppComponent, TableComponent, ModalComponent, ResultsComponent],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [ModalService, ReceiptService],
   bootstrap: [AppComponent],

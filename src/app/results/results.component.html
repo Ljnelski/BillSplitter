@@ -1,0 +1,7 @@
+<div class="container">
+    <div *ngFor="let item of resultData | keyvalue" class="row">
+        <div class="col">
+            {{item.key}} owes: {{item.value}}
+        </div>
+    </div>
+</div>

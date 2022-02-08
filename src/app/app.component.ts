@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalService } from './service/modalService';
+import { ReceiptService } from './service/receiptService';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,22 @@ import { ModalService } from './service/modalService';
 export class AppComponent {
   title = 'BillSplitter';
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    public receiptService: ReceiptService
+  ) {}
 
   openModal() {
     this.modalService.open();
   }
 
-
+  addRecieptItem() {
+    this.receiptService.addItem({
+      itemName: '',
+      itemPrice: 0.0,
+      itemCount: 1,
+      itemBuyers: '',
+      edit: false,
+    });
+  }
 }

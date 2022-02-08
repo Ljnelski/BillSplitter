@@ -1,28 +1,64 @@
-<div class="row">
-  <div class="col cell d-flex justify-content-center">
-    <h4>Item Name</h4>
+<form>
+  <div class="row">
+    <div class="col-2 cell d-flex justify-content-center">
+      <h4>Item Name</h4>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <h4>Item Price</h4>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <h4>Item count</h4>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <h4>Item Buyers</h4>
+    </div>
+    <div class="col-2"></div>
   </div>
-  <div class="col cell d-flex justify-content-center">
-    <h4>Item Name</h4>
+  <div
+    class="row"
+    *ngFor="let item of receiptService.receiptItems | async; let i = index"
+    [formGroup]="recieptItemForm"
+  >
+    <div class="col-2 cell d-flex justify-content-center">
+      <div *ngIf="item.edit; else displayName">
+        <input type="text" formControlName="name" />
+      </div>
+      <ng-template #displayName>
+        {{ item.itemName }}
+      </ng-template>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <div *ngIf="item.edit; else displayPrice">
+        <input type="number" min="0" step="0.01" formControlName="price" />
+      </div>
+      <ng-template #displayPrice> {{ item.itemPrice }} </ng-template>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <div *ngIf="item.edit; else displayCount">
+        <input type="number" formControlName="count" />
+      </div>
+      <ng-template #displayCount>
+        {{ item.itemCount }}
+      </ng-template>
+    </div>
+    <div class="col-2 cell d-flex justify-content-center">
+      <div *ngIf="item.edit; else displayBuyers">
+        <input formControlName="buyers" />
+      </div>
+      <ng-template #displayBuyers>
+        {{ item.itemBuyers }}
+      </ng-template>
+    </div>
+    <div class="col-2 d-flex align-items-center">
+      <div *ngIf="item.edit; else editButton">
+        <button class="btn btn-success" (click)="saveItem(i)">Save</button>
+      </div>
+      <ng-template #editButton>
+        <button class="btn btn-primary" (click)="editItem(i)">Edit</button>
+      </ng-template>
+    </div>
+    <div class="col-2 d-flex align-item-center">
+      <button class="btn btn-warning" (click)="deleteItem(i)" type="button">Delete</button>
+    </div>
   </div>
-  <div class="col cell d-flex justify-content-center">
-    <h4>Item Name</h4>
-  </div>
-  <div class="col cell d-flex justify-content-center">
-    <h4>Item Name</h4>
-  </div>
-</div>
-<div class="row" *ngFor="let item of receiptService.receiptItems">
-  <div class="col cell d-flex justify-content-center">
-    {{ item.itemName }}
-  </div>
-  <div class="col cell d-flex justify-content-center">
-    <input type="number" min="0" step="0.01" [value]="item.itemPrice" />
-  </div>
-  <div class="col cell d-flex justify-content-center">
-    <input type="number" [value]="item.itemCount" />
-  </div>
-  <div class="col cell d-flex justify-content-center">
-    {{ item.itemBuyers }}
-  </div>
-</div>
+</form>

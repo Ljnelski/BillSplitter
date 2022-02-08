@@ -1,38 +1,45 @@
-import { Injectable } from "@angular/core";
-import { IReceiptItem } from "../model/receiptItem";
+import { Injectable } from '@angular/core';
+import { Subject, of } from 'rxjs';
+import { IReceiptItem } from '../model/receiptItem';
 
 @Injectable()
 export class ReceiptService {
-    receiptItems: IReceiptItem[] = [
-        {
-            itemName: "fuck",
-            itemPrice: 9.99,
-            itemCount: 1,
-            itemBuyers: 'LJ'
-        },
-        {
-            itemName: "fuck",
-            itemPrice: 9.99,
-            itemCount: 1,
-            itemBuyers: 'LJ'
-        },
-        {
-            itemName: "fuck",
-            itemPrice: 9.99,
-            itemCount: 1,
-            itemBuyers: 'LJ'
-        },
-    ];
+  private receiptItemsList: IReceiptItem[] = [];
 
-    addItem(newItem : IReceiptItem) {
-        this.receiptItems.push(newItem);
-    }
+  receiptItems: Subject<IReceiptItem[]> = new Subject();
 
-    removeItem(index) {
-        this.receiptItems = this.receiptItems.splice(index, 1);
-    }
+  constructor() {}
 
-    getItems() : IReceiptItem[] {
-        return this.receiptItems
-    }
+  getItems(): Subject<IReceiptItem[]> {
+    return this.receiptItems;
+  }
+
+  addItem(newItem: IReceiptItem) {
+    this.receiptItemsList.push(newItem);
+    this.receiptItems.next(this.receiptItemsList);
+  }
+
+  removeItem(index) {
+    this.receiptItemsList.splice(index, 1);
+    console.log(this.receiptItemsList);
+
+    this.receiptItems.next(this.receiptItemsList);
+  }
+
+  updateItem(item: IReceiptItem, index: number) {
+    this.receiptItemsList[index] = item;
+    this.receiptItems.next(this.receiptItemsList);
+  }
+
+  editItem(index: number) {
+    this.clearEdits();
+    this.receiptItemsList[index].edit = true;
+    this.receiptItems.next(this.receiptItemsList);
+  }
+
+  clearEdits() {
+    this.receiptItemsList.forEach((item, i) => {
+      this.receiptItemsList[i].edit = false;
+    });
+  }
 }
