@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
 
-  /* z-index must be higher than .jw-modal-background */
+  /* z-index must be higher than .modal-background */
   z-index: 1000;
   overflow: auto;
 }

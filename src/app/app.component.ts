@@ -25,6 +25,7 @@ export class AppComponent {
       itemPrice: 0.0,
       itemCount: 1,
       itemBuyers: '',
+      itemTaxed: true,
       edit: false,
     });
   }

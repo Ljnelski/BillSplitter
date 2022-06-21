@@ -1,28 +1,27 @@
 <div class="modal">
-    <div class="modal-body">
-        <h3>Please enter in stuff</h3>
-        <div>
-            <div class="row">
-                <div class="col">
-                    input
-                </div>
-                <div class="col">
-                    input
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    input
-                </div>
-                <div class="col">
-                    input
-                </div>
-            </div>
+  <div class="modal-body">
+    <h3>Please enter in stuff</h3>
+    <div [formGroup]="newItemForm">
+      <div class="row">
+        <div class="col">
+          <label>Name</label><input formControlName="name" />
         </div>
-        
-
-
-        <button class="btn btn-danger" (click)="close()">Close modal</button>
+        <div class="col">
+          <label>Price</label><input type="number" formControlName="price" />
+        </div>
+        <div class="col">
+          <label>Count</label><input type="number" formControlName="count" />
+        </div>
+        <div class="col">
+          <label>Buyers</label><input formControlName="buyers" />
+        </div>
+        <div class="col">
+          <label>Tax</label><input type="checkbox" formControlName="taxed" />
+        </div>
+      </div>
     </div>
+    <button class="btn btn-danger" (click)="close()">Close modal</button>
+    <button class="btn btn-success" (click)="addItem()">Add item</button>
+  </div>
 </div>
 <div class="modal-background"></div>

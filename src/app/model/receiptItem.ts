@@ -3,5 +3,6 @@ export interface IReceiptItem {
     itemPrice: number;
     itemCount: number;
     itemBuyers: string;
-    edit: boolean
+    itemTaxed: boolean;
+    edit: boolean;
 }

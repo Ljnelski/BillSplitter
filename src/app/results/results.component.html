@@ -1,7 +1,8 @@
 <div class="container">
-    <div *ngFor="let item of resultData | keyvalue" class="row">
-        <div class="col">
-            {{item.key}} owes: {{item.value}}
-        </div>
-    </div>
+  <div *ngFor="let item of resultData | keyvalue" class="row">
+    <div class="col">{{ item.key }} owes: {{ item.value }}</div>
+  </div>
+  <div>
+    <h6>total: {{ total }}</h6>
+  </div>
 </div>
