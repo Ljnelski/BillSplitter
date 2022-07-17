@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { distinctUntilChanged, Subject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { IReceiptItem } from '../model/receiptItem';
 import { ReceiptService } from '../service/receiptService';
 

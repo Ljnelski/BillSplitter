@@ -8,10 +8,11 @@ import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './service/modalService';
 import { ReceiptService } from './service/receiptService';
 import { ResultsComponent } from './results/results.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, TableComponent, ModalComponent, ResultsComponent],
-  imports: [BrowserModule, ReactiveFormsModule],
+  imports: [BrowserModule, ReactiveFormsModule, BrowserAnimationsModule],
   providers: [ModalService, ReceiptService],
   bootstrap: [AppComponent],
 })
