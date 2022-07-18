@@ -1,7 +1,7 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { distinctUntilChanged, take } from 'rxjs';;
 import { IReceiptItem } from '../model/receiptItem';
 import { ReceiptService } from '../service/receiptService';
 
@@ -62,7 +62,6 @@ export class TableComponent implements OnInit {
       itemTaxed: this.recieptItemForm.get('taxed').value,
       edit: false,
     };
-    console.log('newItem', newItem);
     this.receiptService.updateItem(newItem, index);
   }
 
@@ -80,5 +79,17 @@ export class TableComponent implements OnInit {
 
     trimmedValue = trimmedValue.toUpperCase();
     this.recieptItemForm.get('buyers').setValue(trimmedValue);
+  }
+
+  dropItem(event: CdkDragDrop<string[]>) {
+    this.receiptService.switchItems(event.previousIndex, event.currentIndex);
+  }
+
+  mouseEnter() {
+    console.log("EnterSpot");
+  }
+
+  mouseLeave() {
+    console.log("LeaveSpot");
   }
 }

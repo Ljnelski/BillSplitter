@@ -1,5 +1,6 @@
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
-import { Subject, of } from 'rxjs';
+import { Subject, of, from } from 'rxjs';
 import { IReceiptItem } from '../model/receiptItem';
 
 @Injectable()
@@ -10,31 +11,41 @@ export class ReceiptService {
 
   constructor() {}
 
+  
   getItems(): Subject<IReceiptItem[]> {
     return this.receiptItems;
   }
 
+  switchItems(fromIndex: number, toIndex: number) {
+    moveItemInArray(this.receiptItemsList, fromIndex, toIndex);
+    this.updateObservable();
+  }
+
+  updateObservable() {
+    this.receiptItems.next(this.receiptItemsList);
+  }
+
   addItem(newItem: IReceiptItem) {
     this.receiptItemsList.push(newItem);
-    this.receiptItems.next(this.receiptItemsList);
+    this.updateObservable();
   }
 
   removeItem(index) {
     this.receiptItemsList.splice(index, 1);
     console.log(this.receiptItemsList);
 
-    this.receiptItems.next(this.receiptItemsList);
+    this.updateObservable();
   }
 
   updateItem(item: IReceiptItem, index: number) {
     this.receiptItemsList[index] = item;
-    this.receiptItems.next(this.receiptItemsList);
+    this.updateObservable();
   }
 
   editItem(index: number) {
     this.clearEdits();
     this.receiptItemsList[index].edit = true;
-    this.receiptItems.next(this.receiptItemsList);
+    this.updateObservable();
   }
 
   clearEdits() {
@@ -42,4 +53,6 @@ export class ReceiptService {
       this.receiptItemsList[i].edit = false;
     });
   }
+
+
 }
